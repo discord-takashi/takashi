@@ -1,5 +1,7 @@
 import { Message } from 'discord.js'
 
+import User from '../../models/user'
+
 import { CommandRepository } from './command-repository'
 import { TakashiContext } from './message-context'
 import { Takashi } from '../core'
@@ -27,6 +29,9 @@ export class CommandHandler {
         // Note that Takashi does not looks for prefixes.
         const commandArguments = message.content.split(/\s+/)
         const commandName = commandArguments.shift()!.toLowerCase()
+
+        let registeredUser = await User.exists({ id: message.author.id })
+        if (!registeredUser) await User.create({ id: message.author.id })
 
         const command = this.commandRepository.find(commandName)
         const context = new TakashiContext(
