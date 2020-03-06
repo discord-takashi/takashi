@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, Types } from 'mongoose'
+import mongoose, { Schema, Document } from 'mongoose'
 
 import { UserDocument } from './user'
 
@@ -24,7 +24,7 @@ const TopicSchema = new Schema({
     name: String,
     subscribers: [
         {
-            type: Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: 'User'
         }
     ]
