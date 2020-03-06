@@ -13,5 +13,11 @@ const takashi = new Takashi()
 modules.load(takashi)
 commands.load(takashi.commands)
 
-database.connect().catch(error('Cannot connect to MongoDB.'))
+// Connect to Discord services.
 takashi.start(DISCORD_TOKEN!).catch(error('Cannot connect to Discord API.'))
+
+// The Discord services is used at database for things like
+// sending persisted messages from jobs
+takashi.client.once('ready', () => {
+    database.connect(takashi).catch(error('Cannot connect to MongoDB.'))
+})
