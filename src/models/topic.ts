@@ -14,6 +14,11 @@ export interface TopicDocument extends Document {
     name: string
 
     /**
+     * When the topic is airs.
+     */
+    airsAt: number
+
+    /**
      * The user subscribed to the topic.
      */
     subscribers: UserDocument[]
@@ -22,6 +27,7 @@ export interface TopicDocument extends Document {
 const TopicSchema = new Schema({
     id: String,
     name: String,
+    airsAt: Number,
     subscribers: [
         {
             type: Schema.Types.ObjectId,
