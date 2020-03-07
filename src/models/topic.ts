@@ -14,6 +14,16 @@ export interface TopicDocument extends Document {
     name: string
 
     /**
+     * The description of the topic.
+     */
+    description: string
+
+    /**
+     * The provider of the topic.
+     */
+    provider: string
+
+    /**
      * When the topic is airs.
      */
     airsAt: number
@@ -22,12 +32,23 @@ export interface TopicDocument extends Document {
      * The user subscribed to the topic.
      */
     subscribers: UserDocument[]
+
+    /**
+     * The properties that will used to send the message.
+     */
+    properties: any
 }
 
 const TopicSchema = new Schema({
     id: String,
-    name: String,
+    name: {
+        type: String,
+        index: { type: 'text' } // adds a "searchable" trait to this property
+    },
+    description: String,
+    provider: String,
     airsAt: Number,
+    properties: Object,
     subscribers: [
         {
             type: Schema.Types.ObjectId,
