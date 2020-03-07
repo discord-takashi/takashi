@@ -25,7 +25,7 @@ export default function loadJobs(takashi: Takashi, agenda: Agenda) {
     function notify(topic: TopicDocument, subscriber: UserDocument) {
         return agenda.now(SEND_NOTIFICATION, {
             to: subscriber.id,
-            topic: topic.name
+            topic
         } as NotificationParamethers)
     }
 
@@ -66,5 +66,5 @@ export default function loadJobs(takashi: Takashi, agenda: Agenda) {
  */
 export interface NotificationParamethers {
     to: string
-    topic: string
+    topic: TopicDocument
 }
