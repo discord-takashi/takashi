@@ -14,7 +14,7 @@ export class TopicProviderRepository {
      * Initializes the topic provider repository.
      */
     public constructor() {
-        this.topicProviders = []
+        this.topicProviders = [new AnilistTopicProvider()]
     }
 
     /**
