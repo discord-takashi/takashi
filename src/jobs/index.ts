@@ -1,3 +1,4 @@
+import { MessageEmbed } from 'discord.js'
 import Agenda from 'agenda'
 
 import { Takashi } from '../core'
@@ -54,7 +55,24 @@ export default function loadJobs(takashi: Takashi, agenda: Agenda) {
 
         if (user) {
             const dm = await user.createDM()
-            await dm.send(topic)
+            const embed = new MessageEmbed()
+
+            embed.setTitle(topic.name)
+            embed.setDescription(topic.description)
+            embed.setFooter(`Notification Source from ${topic.provider}`)
+            embed.setTimestamp(topic.airsAt)
+
+            if (topic.properties.color) {
+                embed.setColor(topic.properties.color)
+            } else {
+                embed.setColor('rgb(93, 120, 228)') // default color
+            }
+
+            if (topic.properties.thumbnail) {
+                embed.setThumbnail(topic.properties.thumbnail)
+            }
+
+            await dm.send(embed)
         } else {
             job.fail('The provided user does not exists inside Discord.')
         }
