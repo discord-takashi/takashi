@@ -35,7 +35,10 @@ export class AnilistTopicProvider extends TopicProvider {
      */
     public async fetchTopic(search: string) {
         const variables = { search }
-        const response = await this.request(Constants.ENDPOINT, variables)
+        const response = await this.request(
+            Constants.MEDIA_QUERY,
+            variables
+        ).catch((error) => error)
 
         if ((response as AxiosError).isAxiosError) {
             throw new Error(`This title cannot be found inside ${this.name}.`)
