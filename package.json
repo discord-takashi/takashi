@@ -1,5 +1,8 @@
 {
     "private": true,
+    "scripts": {
+        "build": "tsc"
+    },
     "dependencies": {
         "agenda": "^3.0.0",
         "axios": "^0.19.2",
