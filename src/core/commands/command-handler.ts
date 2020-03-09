@@ -1,4 +1,4 @@
-import { Message } from 'discord.js'
+import { Message, MessageEmbed } from 'discord.js'
 
 import User from '../../models/user'
 
@@ -41,7 +41,17 @@ export class CommandHandler {
         )
 
         if (command) {
-            return command.execute(context)
+            return command.execute(context).catch((error: Error) => {
+                const errorMessage = '```asciidoc\n* ' + error.message + '\n```'
+
+                const embed = new MessageEmbed({
+                    title: 'An error has occourred.',
+                    description: errorMessage,
+                    color: [235, 59, 59]
+                })
+
+                return message.channel.send(embed)
+            })
         }
     }
 }
