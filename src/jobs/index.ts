@@ -48,7 +48,21 @@ export default function loadJobs(takashi: Takashi, agenda: Agenda) {
                 })
             })
 
-            await topic.remove() // we will not use this topic anymore
+            const topicProvider = takashi.topicProviders.find(topic.provider)!
+
+            if (topicProvider) {
+                const updatedTopic = await topicProvider.fetchTopic(topic.name).catch(() => {
+                    return { name: null }
+                })
+
+                // `fetchTopic` uses searching.
+                // conflicts of topics can occour during the update.
+                if (updatedTopic.name === topic.name) {
+                    const { description, airsAt, properties } = updatedTopic
+
+                    await topic.updateOne({ description, airsAt, properties })
+                }
+            }
         }
     })
 
