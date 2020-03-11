@@ -1,5 +1,10 @@
 import * as sentry from '@sentry/node'
 
+import dayjs from 'dayjs'
+import dayjsRelative from 'dayjs/plugin/relativeTime'
+
+dayjs.extend(dayjsRelative)
+
 // Load environment variables from `.env`
 require('dotenv/config')
 
