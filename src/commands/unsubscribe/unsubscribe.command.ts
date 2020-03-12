@@ -31,7 +31,7 @@ export default class UnsubscribeCommand extends Command<UnsubscribeService> {
                     : `You're not subscribed to this topic.`
             )
         } else {
-            return message.channel.send(`The topic cannot not found.`)
+            return message.channel.send(`This topic cannot be found.`)
         }
     }
 }
