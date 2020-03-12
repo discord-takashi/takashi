@@ -18,7 +18,8 @@ function connect(takashi: Takashi) {
     return mongoose
         .connect(DATABASE_URL, {
             useNewUrlParser: true,
-            useUnifiedTopology: true
+            useUnifiedTopology: true,
+            useCreateIndex: true
         })
         .then(() => console.log('Successfully connected to MongoDB.'))
         .then(async () => {
