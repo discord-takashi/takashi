@@ -22,7 +22,7 @@ export default class UnsubscribeService {
         if (user) {
             if (!topic.subscribers.includes(user._id)) return false
 
-            await topic.update({ $pull: { subscribers: user._id } })
+            await topic.updateOne({ $pull: { subscribers: user._id } })
             return true
         }
 
