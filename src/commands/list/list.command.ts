@@ -36,12 +36,14 @@ export default class ListCommand extends Command<ListService> {
             response.setThumbnail(userAvatar)
         }
 
-        topics.map((topic: TopicDocument) => {
-            response.addField(
-                `${topic.name} (#${topic.id})`,
-                `Next episode ${dayjs(topic.airsAt).fromNow()}.`
-            )
-        })
+        topics
+            .sort((a, b) => a.airsAt - b.airsAt)
+            .map((topic: TopicDocument) => {
+                response.addField(
+                    `${topic.name} (#${topic.id})`,
+                    `Next episode ${dayjs(topic.airsAt).fromNow()}.`
+                )
+            })
 
         return message.channel.send(response)
     }
