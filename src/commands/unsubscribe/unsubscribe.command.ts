@@ -28,10 +28,10 @@ export default class UnsubscribeCommand extends Command<UnsubscribeService> {
             return message.channel.send(
                 unsubscribed
                     ? `Successfully unsubscribed from "${targetTopic.name}".`
-                    : `You're not subscribed to this topic.`
+                    : `You're not subscribed to this notification source.`
             )
         } else {
-            return message.channel.send(`This topic cannot be found.`)
+            return message.channel.send(`This notification source cannot be found.`)
         }
     }
 }

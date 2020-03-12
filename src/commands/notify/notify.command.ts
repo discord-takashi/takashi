@@ -38,7 +38,7 @@ export default class NotifyCommand extends Command<NotifyService> {
         if (subscriptionResult === NotifySubscriptionResult.SUBSCRIBED) {
             embed = new MessageEmbed({
                 title: `Subscribed to #${targetTopic.id}`,
-                description: `You've succesfully subscribed to ${targetTopic.name}.\n\nTo unsubscribe from this notification use \`unsubscribe ${targetTopic.id}\`.`,
+                description: `You've succesfully subscribed to ${targetTopic.name}.\n\nTo unsubscribe from notifications of this source use \`unsubscribe ${targetTopic.id}\`.`,
                 color: [93, 120, 228],
                 timestamp: targetTopic.airsAt,
                 footer: {
@@ -56,7 +56,7 @@ export default class NotifyCommand extends Command<NotifyService> {
         return message.channel.send(
             subscriptionResult === NotifySubscriptionResult.ALREADY_SUBSCRIBED
                 ? `You're already subscribed to this notification source.`
-                : `A unknown error occoured.`
+                : `An unknown error has occurred.`
         )
     }
 }

@@ -28,7 +28,7 @@ export default class ListCommand extends Command<ListService> {
             title: 'Your subscriptions',
             description:
                 `You're subscribed to **${topics.length}** notification source(s).\n` +
-                `To unsubscribe from a notification source type \`unsubscribe #id\``,
+                `To unsubscribe from a notification source, use \`unsubscribe #id\`.`,
             color: [93, 120, 228] // rgba(93, 120, 228)
         })
 
@@ -41,7 +41,7 @@ export default class ListCommand extends Command<ListService> {
             .map((topic: TopicDocument) => {
                 response.addField(
                     `${topic.name} (#${topic.id})`,
-                    `Next episode ${dayjs(topic.airsAt).fromNow()}.`
+                    `Next episode will release ${dayjs(topic.airsAt).fromNow()}.`
                 )
             })
 
