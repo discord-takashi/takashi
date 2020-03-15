@@ -1,3 +1,5 @@
+import dayjs from 'dayjs'
+
 import { Language } from '../core/i18n/language'
 
 const EN_US: Language = {
@@ -27,7 +29,12 @@ const EN_US: Language = {
             `To unsubscribe from notifications of this source use \`unsubscribe ${id}\`.`,
         'command.notify.already_subscribed': `You're already subscribed to this notification source.`,
         'command.notify.source_provider': (provider: string) =>
-            `Notification Source from \`${provider}\``
+            `Notification Source from \`${provider}\``,
+
+        'command.unsubscribed.unsubscribed': (name: string) =>
+            `Successfully unsubscribed from "${name}".`,
+        'command.unsubscribed.not_subscribed': `You're not subscribed to this notification source.`,
+        'command.unsubscribe.not_found': `This notification source cannot be found.`
     }
 }
 
