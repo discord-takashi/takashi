@@ -3,6 +3,8 @@ import { Message } from 'discord.js'
 import { UserDocument } from '../../models/user'
 import { Language } from '../i18n/language'
 
+import EN_US from '../../languages/en_US.language'
+
 /**
  * Takashi's message context.
  */
@@ -46,7 +48,7 @@ export class TakashiContext {
         this.rawArguments = rawArguments
         this.user = user
 
-        this.language = takashi.languages.get(user.language)!
+        this.language = takashi.languages.get(user.language) || EN_US
     }
 
     /**
