@@ -16,8 +16,10 @@ export default class HelloCommand extends Command<HelloService> {
     /**
      * Replies the message with `Hello, <user>.`.
      */
-    public async execute({ message }: TakashiContext) {
-        const response = this.service.hello(`<@${message.author.id}>`)
+    public async execute(context: TakashiContext) {
+        const { message } = context
+
+        const response = context.translate('hello', message.author)
         return message.channel.send(response)
     }
 }
