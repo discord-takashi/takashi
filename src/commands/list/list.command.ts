@@ -1,5 +1,3 @@
-import dayjs from 'dayjs'
-
 import { Command, TakashiContext } from '../../core'
 import { TopicDocument } from '../../models/topic'
 
@@ -20,16 +18,23 @@ export default class ListCommand extends Command<ListService> {
     /**
      * Displays the subscription list to a user.
      */
-    public async execute({ message }: TakashiContext) {
+    public async execute(context: TakashiContext) {
+        const { message } = context
+
         const user = await this.service.fetchUser(message.author.id)
         const topics = await this.service.fetchUserTopics(user!._id)
         const userAvatar = message.author.avatarURL()
+
         const response = new MessageEmbed({
-            title: 'Your subscriptions',
+            title: context.translate('command.list.title'),
+            color: [93, 120, 228], // rgba(93, 120, 228)
             description:
-                `You're subscribed to **${topics.length}** notification source(s).\n` +
-                `To unsubscribe from a notification source, use \`unsubscribe #id\`.`,
-            color: [93, 120, 228] // rgba(93, 120, 228)
+                context.translate(
+                    'command.list.subscriptions_count',
+                    topics.length
+                ) +
+                '\n' +
+                context.translate('command.list.unsubscribe_guide')
         })
 
         if (userAvatar) {
@@ -41,7 +46,7 @@ export default class ListCommand extends Command<ListService> {
             .map((topic: TopicDocument) => {
                 response.addField(
                     `${topic.name} (#${topic.id})`,
-                    `Next episode will release ${dayjs(topic.airsAt).fromNow()}.`
+                    context.translate('command.list.next_episode', topic.airsAt)
                 )
             })
 
