@@ -30,14 +30,17 @@ export class CommandHandler {
         const commandArguments = message.content.split(/\s+/)
         const commandName = commandArguments.shift()!.toLowerCase()
 
-        let registeredUser = await User.exists({ id: message.author.id })
-        if (!registeredUser) await User.create({ id: message.author.id })
+        let registeredUser = await User.findOne({ id: message.author.id })
+        if (!registeredUser) {
+            registeredUser = await User.create({ id: message.author.id })
+        }
 
         const command = this.commandRepository.find(commandName)
         const context = new TakashiContext(
             this.takashi,
             message,
-            commandArguments
+            commandArguments,
+            registeredUser
         )
 
         if (command) {
