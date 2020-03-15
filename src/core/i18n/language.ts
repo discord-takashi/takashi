@@ -16,7 +16,7 @@ export interface Language {
      * The translation strings.
      */
     strings: {
-        'default': (key: string) => string 
-        [key: string]: (...args: any) => string | string
+        default: (key: string) => string
+        [key: string]: ((...args: any) => string) | string
     }
 }
