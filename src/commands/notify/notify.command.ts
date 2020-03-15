@@ -31,24 +31,23 @@ export default class NotifyCommand extends Command<NotifyService> {
             targetTopic
         )
 
-        let embed = new MessageEmbed()
-
         if (subscriptionResult === NotifySubscriptionResult.SUBSCRIBED) {
-            embed = new MessageEmbed({
+            const subscribedMessage = context.translate(
+                'command.notify.subscribed',
+                targetTopic.name
+            )
+
+            const unsubscribeGuide = context.translate(
+                'command.notify.unsubscribe_guide',
+                targetTopic.id
+            )
+
+            const embed = new MessageEmbed({
                 title: context.translate(
                     'command.notify.subscribed_title',
                     targetTopic.id
                 ),
-                description:
-                    context.translate(
-                        'command.notify.subscribed',
-                        targetTopic.name
-                    ) +
-                    '\n' +
-                    context.translate(
-                        'command.notify.unsubscribe_guide',
-                        targetTopic.id
-                    ),
+                description: `${subscribedMessage}\n${unsubscribeGuide}`,
                 color: [93, 120, 228],
                 timestamp: targetTopic.airsAt,
                 footer: {
