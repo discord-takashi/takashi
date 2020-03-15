@@ -6,11 +6,13 @@ import error from './utils/error'
 import database from './database'
 
 import commands from './commands'
+import languages from './languages'
 import modules from './modules'
 
 const takashi = new Takashi()
 
 modules.load(takashi)
+languages.load(takashi.languages)
 commands.load(takashi.commands)
 
 // Connect to Discord services.
