@@ -7,6 +7,11 @@ export interface UserDocument extends Document {
     id: string
 
     /**
+     * The language of the user.
+     */
+    language: string
+
+    /**
      * The last notification that this user has received.
      */
     last_notification_received: Date
@@ -14,7 +19,11 @@ export interface UserDocument extends Document {
 
 const UserSchema = new Schema({
     id: String,
-    last_notification_received: Date
+    last_notification_received: Date,
+    language: {
+        type: String,
+        default: 'en_US'
+    }
 })
 
 export default mongoose.model<UserDocument>('User', UserSchema)

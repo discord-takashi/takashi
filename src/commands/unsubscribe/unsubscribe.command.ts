@@ -16,22 +16,34 @@ export default class UnsubscribeCommand extends Command<UnsubscribeService> {
     /**
      * Unsubscribes from a topic.
      */
-    public async execute({ message, rawArguments }: TakashiContext): Promise<any> {
-        const targetTopic = await this.service.getTopicById(rawArguments.shift()!)
+    public async execute(context: TakashiContext): Promise<any> {
+        const { message, rawArguments } = context
+        const targetTopic = await this.service.getTopicById(
+            rawArguments.shift()!
+        )
 
-        if(targetTopic) {
+        if (targetTopic) {
             const unsubscribed = await this.service.removeSubscriptionFromTopic(
                 message.author.id,
                 targetTopic
             )
 
-            return message.channel.send(
-                unsubscribed
-                    ? `Successfully unsubscribed from "${targetTopic.name}".`
-                    : `You're not subscribed to this notification source.`
+            let response = context.translate(
+                'command.unsubscribed.not_subscribed'
             )
+
+            if (unsubscribed) {
+                response = context.translate(
+                    'command.unsubscribed.unsubscribed',
+                    targetTopic.name
+                )
+            }
+
+            return message.channel.send(response)
         } else {
-            return message.channel.send(`This notification source cannot be found.`)
+            return message.channel.send(
+                context.translate('command.unsubscribe.not_found')
+            )
         }
     }
 }

@@ -2,6 +2,7 @@ import { Client, Message } from 'discord.js'
 
 import { TopicProviderRepository } from './topic/topic-provider.repository'
 import { CommandRepository, CommandHandler } from './commands'
+import { LanguageRepository } from './i18n/language.repository'
 
 /**
  * The Takashi's core.
@@ -28,11 +29,18 @@ export class Takashi {
     public commandHandler: CommandHandler
 
     /**
+     * The language repository.
+     */
+    public languages: LanguageRepository
+
+    /**
      * Initializes a new Takashi instance.
      */
     public constructor() {
         this.topicProviders = new TopicProviderRepository()
         this.commands = new CommandRepository()
+        this.languages = new LanguageRepository()
+
         this.client = new Client({
             partials: ['MESSAGE', 'CHANNEL', 'USER']
         })
