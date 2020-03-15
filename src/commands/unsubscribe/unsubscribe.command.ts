@@ -28,14 +28,18 @@ export default class UnsubscribeCommand extends Command<UnsubscribeService> {
                 targetTopic
             )
 
-            return message.channel.send(
-                !unsubscribed
-                    ? context.translate('command.unsubscribed.not_subscribed')
-                    : context.translate(
-                          'command.unsubscribed.unsubscribed',
-                          targetTopic.name
-                      )
+            let response = context.translate(
+                'command.unsubscribed.not_subscribed'
             )
+
+            if (unsubscribed) {
+                response = context.translate(
+                    'command.unsubscribed.unsubscribed',
+                    targetTopic.name
+                )
+            }
+
+            return message.channel.send(response)
         } else {
             return message.channel.send(
                 context.translate('command.unsubscribe.not_found')
