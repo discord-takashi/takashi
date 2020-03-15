@@ -53,7 +53,12 @@ export class TakashiContext {
      * Turns a `string` into a localized message.
      */
     public translate(string: string, ...args: any) {
-        const languageString = this.language.strings[string]
+        let languageString = this.language.strings[string]
+
+        if (!languageString) {
+            languageString = this.language.strings.default
+        }
+
         return typeof languageString === 'function'
             ? languageString(...args)
             : languageString
