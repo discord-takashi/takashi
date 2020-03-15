@@ -12,27 +12,17 @@ const EN_US: Language = {
         hello: (to: string) => `Hello, ${to}.`,
 
         'command.list.title': `Your subscriptions`,
-        'command.list.subscriptions_count': (topics: number) =>
-            `You're subscribed to **${topics}** notification source(s).`,
-        'command.list.unsubscribe_guide': () =>
-            `To unsubscribe from a notification source, use \`unsubscribe <id>\`.`,
-        'command.list.next_episode': (date: Date) =>
-            `Next episode will release ${dayjs(date)
-                .locale('en_US')
-                .fromNow()}.`,
+        'command.list.subscriptions_count': (topics: number) => `You're subscribed to **${topics}** notification source(s).`,
+        'command.list.unsubscribe_guide': () => `To unsubscribe from a notification source, use \`unsubscribe <id>\`.`,
+        'command.list.next_episode': (date: Date) => `Next episode will release ${dayjs(date).locale('en_US').fromNow()}.`,
 
-        'command.notify.subscribed_title': (id: string) =>
-            `Subscribed to #${id}.`,
-        'command.notify.subscribed': (name: string) =>
-            `You've succesfully subscribed to ${name}.`,
-        'command.notify.unsubscribe_guide': (id: string) =>
-            `To unsubscribe from notifications of this source use \`unsubscribe ${id}\`.`,
+        'command.notify.subscribed_title': (id: string) => `Subscribed to #${id}.`,
+        'command.notify.subscribed': (name: string) => `You've succesfully subscribed to ${name}.`,
+        'command.notify.unsubscribe_guide': (id: string) => `To unsubscribe from notifications of this source use \`unsubscribe ${id}\`.`,
         'command.notify.already_subscribed': `You're already subscribed to this notification source.`,
-        'command.notify.source_provider': (provider: string) =>
-            `Notification Source from \`${provider}\``,
+        'command.notify.source_provider': (provider: string) => `Notification Source from \`${provider}\``,
 
-        'command.unsubscribed.unsubscribed': (name: string) =>
-            `Successfully unsubscribed from "${name}".`,
+        'command.unsubscribed.unsubscribed': (name: string) => `Successfully unsubscribed from "${name}".`,
         'command.unsubscribed.not_subscribed': `You're not subscribed to this notification source.`,
         'command.unsubscribe.not_found': `This notification source cannot be found.`
     }
