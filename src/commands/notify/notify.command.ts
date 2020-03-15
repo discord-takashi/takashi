@@ -17,11 +17,9 @@ export default class NotifyCommand extends Command<NotifyService> {
     /**
      * Subscribes to a topic.
      */
-    public async execute({
-        takashi,
-        message,
-        rawArguments
-    }: TakashiContext): Promise<any> {
+    public async execute(context: TakashiContext): Promise<any> {
+        const { takashi, message, rawArguments } = context
+
         const topicName = rawArguments.join(' ')
         const targetTopic = await this.service.findOrCreateTopic(
             takashi.topicProviders,
@@ -37,12 +35,27 @@ export default class NotifyCommand extends Command<NotifyService> {
 
         if (subscriptionResult === NotifySubscriptionResult.SUBSCRIBED) {
             embed = new MessageEmbed({
-                title: `Subscribed to #${targetTopic.id}`,
-                description: `You've succesfully subscribed to ${targetTopic.name}.\n\nTo unsubscribe from notifications of this source use \`unsubscribe ${targetTopic.id}\`.`,
+                title: context.translate(
+                    'command.notify.subscribed_title',
+                    targetTopic.id
+                ),
+                description:
+                    context.translate(
+                        'command.notify.subscribed',
+                        targetTopic.name
+                    ) +
+                    '\n' +
+                    context.translate(
+                        'command.notify.unsubscribe_guide',
+                        targetTopic.id
+                    ),
                 color: [93, 120, 228],
                 timestamp: targetTopic.airsAt,
                 footer: {
-                    text: `Notification Source from \`${targetTopic.provider}\``
+                    text: context.translate(
+                        'command.notify.source_provider',
+                        targetTopic.provider
+                    )
                 }
             })
 
@@ -55,8 +68,8 @@ export default class NotifyCommand extends Command<NotifyService> {
 
         return message.channel.send(
             subscriptionResult === NotifySubscriptionResult.ALREADY_SUBSCRIBED
-                ? `You're already subscribed to this notification source.`
-                : `An unknown error has occurred.`
+                ? context.translate('command.notify.already_subscribed')
+                : context.translate('unknown_error')
         )
     }
 }
