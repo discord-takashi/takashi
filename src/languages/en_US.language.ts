@@ -14,7 +14,14 @@ const EN_US: Language = {
         'command.list.title': `Your subscriptions`,
         'command.list.subscriptions_count': (topics: number) => `You're subscribed to **${topics}** notification source(s).`,
         'command.list.unsubscribe_guide': () => `To unsubscribe from a notification source, use \`unsubscribe <id>\`.`,
-        'command.list.next_episode': (date: Date) => `Next episode will release ${dayjs(date).locale('en_US').fromNow()}.`,
+        'command.list.next_episode': (date: Date) => {
+            const dateLocalized = dayjs(date).locale('en_US')
+
+            const releasedIn = dateLocalized.fromNow()
+            const releaseTime = dateLocalized.format('HH:mm')
+
+            return `Next episode will release ${releasedIn}. (${releaseTime})` 
+        },
 
         'command.notify.subscribed_title': (id: string) => `Subscribed to #${id}.`,
         'command.notify.subscribed': (name: string) => `You've succesfully subscribed to ${name}.`,
