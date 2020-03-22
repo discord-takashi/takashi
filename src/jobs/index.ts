@@ -61,6 +61,8 @@ export default function loadJobs(takashi: Takashi, agenda: Agenda) {
                     const { description, airsAt, properties } = updatedTopic
 
                     await topic.updateOne({ description, airsAt, properties })
+                } else {
+                    await topic.remove()
                 }
             }
         }
