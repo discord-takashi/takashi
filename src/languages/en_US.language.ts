@@ -25,7 +25,7 @@ const EN_US: Language = {
 
         'command.notify.subscribed_title': (id: string) => `Subscribed to #${id}.`,
         'command.notify.subscribed': (name: string) => `You've succesfully subscribed to ${name}.`,
-        'command.notify.unsubscribe_guide': (id: string) => `To unsubscribe from notifications of this source use \`unsubscribe ${id}\`.`,
+        'command.notify.unsubscribe_guide': (provider: string, id: string) => `To unsubscribe from notifications of this source use \`unsubscribe ${provider} ${id}\`.`,
         'command.notify.already_subscribed': `You're already subscribed to this notification source.`,
         'command.notify.source_provider': (provider: string) => `Notification Source from \`${provider}\``,
 

@@ -20,9 +20,16 @@ export default class NotifyCommand extends Command<NotifyService> {
     public async execute(context: TakashiContext): Promise<any> {
         const { takashi, message, rawArguments } = context
 
+        const topicProviderName = rawArguments.shift()!
+        const topicProvider = takashi.topicProviders.findByAlias(topicProviderName)
+
+        if(!topicProvider) {
+            throw new Error(`The provider "${topicProviderName}" does not exists.`)
+        }
+        
         const topicName = rawArguments.join(' ')
         const targetTopic = await this.service.findOrCreateTopic(
-            takashi.topicProviders,
+            topicProvider,
             topicName
         )
 
@@ -39,6 +46,7 @@ export default class NotifyCommand extends Command<NotifyService> {
 
             const unsubscribeGuide = context.translate(
                 'command.notify.unsubscribe_guide',
+                topicProvider.alias,
                 targetTopic.id
             )
 

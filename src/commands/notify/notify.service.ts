@@ -3,6 +3,7 @@ import { CommandService } from '../../core/commands/command-service'
 
 import Topic, { TopicDocument } from '../../models/topic'
 import User from '../../models/user'
+import { TopicProvider } from '../../core/topic/topic-provider'
 
 /**
  * The result for `NotifyService#subscribe`.
@@ -43,12 +44,10 @@ export default class NotifyService extends CommandService {
      * Find or create a new topic.
      */
     public async findOrCreateTopic(
-        topicProviders: TopicProviderRepository,
+        topicProvider: TopicProvider,
         topicName: string
     ): Promise<TopicDocument> {
-        const topicProvider = topicProviders.find('anilist.co')!
         const topicData = await topicProvider.fetchTopic(topicName)
-
         let topic: TopicDocument | null = await Topic.findOne({
             id: topicData.id
         })
