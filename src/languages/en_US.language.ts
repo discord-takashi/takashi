@@ -13,7 +13,7 @@ const EN_US: Language = {
 
         'command.list.title': `Your subscriptions`,
         'command.list.subscriptions_count': (topics: number) => `You're subscribed to **${topics}** notification source(s).`,
-        'command.list.unsubscribe_guide': () => `To unsubscribe from a notification source, use \`unsubscribe <id>\`.`,
+        'command.list.unsubscribe_guide': () => `To unsubscribe from a notification source, use \`unsubscribe <provider> <id>\`.`,
         'command.list.next_episode': (date: Date) => {
             const dateLocalized = dayjs(date).locale('en_US')
 
