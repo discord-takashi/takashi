@@ -9,8 +9,8 @@ export default class UnsubscribeService {
     /**
      * Finds a topic by the ID.
      */
-    public async getTopicById(id: string): Promise<TopicDocument| null> {
-        return Topic.findOne({ id })
+    public async getTopicById(id: string, provider: string): Promise<TopicDocument| null> {
+        return Topic.findOne({ id, provider })
     }
 
     /**

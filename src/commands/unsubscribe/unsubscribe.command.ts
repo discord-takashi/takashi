@@ -17,9 +17,19 @@ export default class UnsubscribeCommand extends Command<UnsubscribeService> {
      * Unsubscribes from a topic.
      */
     public async execute(context: TakashiContext): Promise<any> {
-        const { message, rawArguments } = context
+        const { takashi, message, rawArguments } = context
+
+        const providerName = rawArguments.shift()!
+        const provider = takashi.topicProviders.findByAlias(providerName)
+
+        if(!provider) {
+            throw new Error(`The provider "${providerName}" does not exists.`)
+        }
+
+        const topicName = rawArguments.join(' ')
         const targetTopic = await this.service.getTopicById(
-            rawArguments.shift()!
+            topicName,
+            provider.name 
         )
 
         if (targetTopic) {
