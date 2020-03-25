@@ -45,7 +45,7 @@ export default class ListCommand extends Command<ListService> {
         }
 
         topics
-            .sort((a, b) => a.airsAt - b.airsAt)
+            .sort((a: TopicDocument, b: TopicDocument) => a.airsAt - b.airsAt)
             .map((topic: TopicDocument) => {
                 response.addField(
                     `${topic.name} (#${topic.id})`,
