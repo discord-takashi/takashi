@@ -21,6 +21,7 @@ export default class ListService extends CommandService {
      * Fetchs all topics that a user is subscribed to.
      */
     public async fetchUserTopics(userId: string) {
+        // @ts-ignore
         const userTopics = await Topic.find({ subscribers: { $in: userId } })
 
         return userTopics
