@@ -25,4 +25,13 @@ export class TopicProviderRepository {
             (provider: TopicProvider) => provider.name === name
         )
     }
+
+    /**
+     * Finds a topic by the alias.
+     */
+    public findByAlias(alias: string) {
+        return this.topicProviders.find(
+            (provider: TopicProvider) => provider.alias === alias
+        )
+    }
 }

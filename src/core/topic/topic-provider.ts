@@ -8,10 +8,16 @@ export abstract class TopicProvider {
     public name: string
 
     /**
+     * The alias of the provider.
+     */
+    public alias: string
+
+    /**
      * Initializes a new topic provider.
      */
-    public constructor(name: string) {
+    public constructor(name: string, alias?: string) {
         this.name = name
+        this.alias = alias || name
     }
 
     /**

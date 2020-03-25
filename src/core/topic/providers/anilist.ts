@@ -12,7 +12,7 @@ export class AnilistTopicProvider extends TopicProvider {
      * Initializes the topic provider for `anilist.co`.
      */
     public constructor() {
-        super('anilist.co')
+        super('anilist.co', 'anime')
     }
 
     /**
