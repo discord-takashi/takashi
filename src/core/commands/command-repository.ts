@@ -7,13 +7,20 @@ export class CommandRepository {
     /**
      * The array of commands registered inside this repository.
      */
-    public commands: Command[]
+    protected commands: Command[]
 
     /**
      * Initializes a new command repository.
      */
     public constructor() {
         this.commands = []
+    }
+
+    /**
+     * @returns all commands inside this repository.
+     */
+    public all() {
+        return this.commands
     }
 
     /**
