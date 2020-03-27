@@ -34,4 +34,11 @@ export class TopicProviderRepository {
             (provider: TopicProvider) => provider.alias === alias
         )
     }
+
+    /**
+     * @returns all topic providers registered inside this repository.
+     */
+    public all() {
+        return this.topicProviders
+    }
 }

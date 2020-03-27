@@ -31,7 +31,10 @@ const EN_US: Language = {
 
         'command.unsubscribed.unsubscribed': (name: string) => `Successfully unsubscribed from "${name}".`,
         'command.unsubscribed.not_subscribed': `You're not subscribed to this notification source.`,
-        'command.unsubscribe.not_found': `This notification source cannot be found.`
+        'command.unsubscribe.not_found': `This notification source cannot be found.`,
+
+        'command.providers.title': 'Notification Providers',
+        'command.providers.provided_by': (provider: string) => `Provided by \`${provider}\``
     }
 }
 
