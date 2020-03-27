@@ -11,6 +11,8 @@ const EN_US: Language = {
 
         hello: (to: string) => `Hello, ${to}.`,
 
+        'command.use': (command: string) => `Use ${command}`,
+
         'command.list.title': `Your subscriptions`,
         'command.list.subscriptions_count': (topics: number) => `You're subscribed to **${topics}** notification source(s).`,
         'command.list.unsubscribe_guide': () => `To unsubscribe from a notification source, use \`unsubscribe <provider> <id>\`.`,
@@ -34,7 +36,17 @@ const EN_US: Language = {
         'command.unsubscribe.not_found': `This notification source cannot be found.`,
 
         'command.providers.title': 'Notification Providers',
-        'command.providers.provided_by': (provider: string) => `Provided by \`${provider}\``
+        'command.providers.provided_by': (provider: string) => `Provided by \`${provider}\``,
+
+        'command.help.title': 'takashi',
+        'command.help.commands': 'To display the command list.',
+        'command.help.providers': 'To display the available notification providers.',
+        'command.help.github_repository': 'GitHub Repository',
+        'command.help.if_you_are_running_into_problems': "If you're running into problems",
+        'command.help.contact': (developer: string) => `Contact ${developer}.`,
+        'command.help.developer': (developer: string) => `@takashi is developed by ${developer}`,
+
+        'command.help.commands.title': 'Commands'
     }
 }
 
