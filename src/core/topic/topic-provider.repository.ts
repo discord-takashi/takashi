@@ -1,5 +1,7 @@
 import { TopicProvider } from './topic-provider'
+
 import { AnilistTopicProvider } from './providers/anilist'
+import { EpisodateTopicProvider } from './providers/episodate'
 
 /**
  * The repository for topic providers.
@@ -14,7 +16,10 @@ export class TopicProviderRepository {
      * Initializes the topic provider repository.
      */
     public constructor() {
-        this.topicProviders = [new AnilistTopicProvider()]
+        this.topicProviders = [
+            new AnilistTopicProvider(),
+            new EpisodateTopicProvider()
+        ]
     }
 
     /**
