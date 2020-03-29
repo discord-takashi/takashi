@@ -11,7 +11,7 @@ export default {
      */
     MEDIA_QUERY: stripIndents`
         query ($search: String){
-            Media(search: $search, status: RELEASING, type: ANIME, format_not: MUSIC) {
+            Media(search: $search, status_in: [RELEASING, NOT_YET_RELEASED], type: ANIME, format_not: MUSIC) {
                 id
                 coverImage {
                     large
