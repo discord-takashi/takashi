@@ -52,12 +52,12 @@ export default function loadJobs(takashi: Takashi, agenda: Agenda) {
 
             if (topicProvider) {
                 const updatedTopic = await topicProvider.fetchTopic(topic.name).catch(() => {
-                    return { name: null }
+                    return { id: null }
                 })
 
                 // `fetchTopic` uses searching.
                 // conflicts of topics can occour during the update.
-                if (updatedTopic.name === topic.name) {
+                if (updatedTopic.id === topic.id) {
                     const { description, airsAt, properties } = updatedTopic
 
                     await topic.updateOne({ description, airsAt, properties })
