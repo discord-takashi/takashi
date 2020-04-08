@@ -6,7 +6,7 @@
     },
     "dependencies": {
         "@sentry/node": "5.15.4",
-        "agenda": "^3.0.0",
+        "agenda": "^3.1.0",
         "axios": "^0.19.2",
         "common-tags": "^1.8.0",
         "dayjs": "^1.8.23",
