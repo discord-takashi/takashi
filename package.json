@@ -21,7 +21,7 @@
         "@types/common-tags": "^1.8.0",
         "@types/mongoose": "^5.7.10",
         "@types/node": "^13.11.1",
-        "@types/ws": "^7.2.2",
+        "@types/ws": "^7.2.4",
         "cz-conventional-changelog": "3.1.0",
         "husky": "^4.2.5",
         "typescript": "^3.8.3"
