@@ -20,7 +20,7 @@
         "@types/agenda": "^2.0.6",
         "@types/common-tags": "^1.8.0",
         "@types/mongoose": "^5.7.12",
-        "@types/node": "^13.11.1",
+        "@types/node": "^13.13.0",
         "@types/ws": "^7.2.4",
         "cz-conventional-changelog": "3.1.0",
         "husky": "^4.2.5",
