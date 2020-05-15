@@ -9,7 +9,7 @@
         "agenda": "^3.1.0",
         "axios": "^0.19.2",
         "common-tags": "^1.8.0",
-        "dayjs": "^1.8.26",
+        "dayjs": "^1.8.27",
         "discord.js": "^12.2.0",
         "dotenv": "^8.2.0",
         "mongoose": "^5.9.14"
