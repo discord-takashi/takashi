@@ -41,11 +41,6 @@ export default function loadJobs(takashi: Takashi, agenda: Agenda) {
             .exec()
 
         if (topic) {
-            if (topic.subscribers.length === 0) {
-                await topic.remove()
-                return 
-            }
-
             await topic.subscribers.map(async (subscriber: UserDocument) => {
                 await notify(topic, subscriber)
                 return subscriber.updateOne({
