@@ -24,7 +24,7 @@
         "@types/ws": "^7.2.4",
         "cz-conventional-changelog": "3.2.0",
         "husky": "^4.2.5",
-        "typescript": "^3.9.2"
+        "typescript": "^3.9.3"
     },
     "husky": {
         "hooks": {
