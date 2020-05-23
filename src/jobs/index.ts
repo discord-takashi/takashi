@@ -57,7 +57,7 @@ export default function loadJobs(takashi: Takashi, agenda: Agenda) {
 
                 // `fetchTopic` uses searching.
                 // conflicts of topics can occour during the update.
-                if (updatedTopic.id === topic.id) {
+                if (updatedTopic.id !== null && parseInt(updatedTopic.id) === parseInt(topic.id)) {
                     const { description, airsAt, properties } = updatedTopic
 
                     await topic.updateOne({ description, airsAt, properties })
