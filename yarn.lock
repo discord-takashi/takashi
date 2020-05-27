@@ -257,10 +257,10 @@
     "@sentry/types" "5.15.5"
     tslib "^1.9.3"
 
-"@types/agenda@^2.0.7":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@types/agenda/-/agenda-2.0.7.tgz#6e7977d2e852d3bca102e2dd4a4d20b6f1a563e3"
-  integrity sha512-a/NMzy5Akhect+t2LD4nYUeNv44/U4Ay67uHMwQ89WWaQ/23gAEKf2hibwSkkTAsM/yr05R2cgqb84oN0O0rQw==
+"@types/agenda@^2.0.8":
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/@types/agenda/-/agenda-2.0.8.tgz#ba74d138b877a416bab50daf2ff524eba2c6aa4a"
+  integrity sha512-O4/vGuiGCLNW5hIfBTiHidLz5O0IWO4fBJUIbh8TGMzLZvqd6qilRu9qxts3MwLKjBKSfg17xseCZSgWG38t7Q==
   dependencies:
     "@types/mongodb" "*"
     "@types/node" "*"
