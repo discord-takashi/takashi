@@ -12,7 +12,7 @@
         "dayjs": "^1.8.29",
         "discord.js": "^12.2.0",
         "dotenv": "^8.2.0",
-        "mongoose": "^5.9.21"
+        "mongoose": "^5.9.22"
     },
     "devDependencies": {
         "@commitlint/cli": "^9.0.1",
