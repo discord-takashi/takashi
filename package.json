@@ -5,7 +5,7 @@
         "build": "tsc"
     },
     "dependencies": {
-        "@sentry/node": "5.19.1",
+        "@sentry/node": "5.19.2",
         "agenda": "^3.1.0",
         "axios": "^0.19.2",
         "common-tags": "^1.8.0",
