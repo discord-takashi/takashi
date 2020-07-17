@@ -7,7 +7,5 @@ export function translate(language: Language, string: string, ...args: any) {
         languageString = language.strings.default
     }
 
-    return typeof languageString === 'function'
-        ? languageString(...args)
-        : languageString
+    return typeof languageString === 'function' ? languageString(...args) : languageString
 }

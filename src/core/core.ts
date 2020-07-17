@@ -42,13 +42,11 @@ export class Takashi {
         this.languages = new LanguageRepository()
 
         this.client = new Client({
-            partials: ['MESSAGE', 'CHANNEL', 'USER']
+            partials: ['MESSAGE', 'CHANNEL', 'USER'],
         })
 
         this.commandHandler = new CommandHandler(this, this.commands)
-        this.client.on('message', async (message: Message) =>
-            this.commandHandler.handle(message)
-        )
+        this.client.on('message', async (message: Message) => this.commandHandler.handle(message))
     }
 
     /**

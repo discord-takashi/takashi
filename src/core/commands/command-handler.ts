@@ -14,10 +14,7 @@ export class CommandHandler {
     /**
      * Initializes a new command handler.
      */
-    public constructor(
-        public takashi: Takashi,
-        public commandRepository: CommandRepository
-    ) {}
+    public constructor(public takashi: Takashi, public commandRepository: CommandRepository) {}
 
     /**
      * Handles a incoming message.
@@ -32,16 +29,11 @@ export class CommandHandler {
 
         let registeredUser = await User.findOne({ id: message.author.id })
         if (!registeredUser) {
-            registeredUser = await User.create({ id: message.author.id })
+            registeredUser = await User.create({ id: message.author.id } as any)
         }
 
         const command = this.commandRepository.find(commandName)
-        const context = new TakashiContext(
-            this.takashi,
-            message,
-            commandArguments,
-            registeredUser
-        )
+        const context = new TakashiContext(this.takashi, message, commandArguments, registeredUser)
 
         if (command) {
             return command.execute(context).catch((error: Error) => {
@@ -50,7 +42,7 @@ export class CommandHandler {
                 const embed = new MessageEmbed({
                     title: 'An error has occourred.',
                     description: errorMessage,
-                    color: [235, 59, 59]
+                    color: [235, 59, 59],
                 })
 
                 return message.channel.send(embed)

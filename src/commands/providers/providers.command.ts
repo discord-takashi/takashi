@@ -5,7 +5,6 @@ import { MessageEmbed } from 'discord.js'
  * The command for listing providers.
  */
 export default class ProviderListCommand extends Command<{}> {
-
     /**
      * Initializes the `providers` command.
      */
@@ -25,13 +24,9 @@ export default class ProviderListCommand extends Command<{}> {
         })
 
         for (const provider of providers) {
-            embed.addField(
-                provider.alias,
-                context.translate('command.providers.provided_by', provider.name)
-            )
+            embed.addField(provider.alias, context.translate('command.providers.provided_by', provider.name))
         }
 
         return message.channel.send(embed)
     }
-
 }

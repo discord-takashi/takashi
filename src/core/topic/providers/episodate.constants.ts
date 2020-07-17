@@ -14,6 +14,6 @@ export default {
         search: (query: string, page: number = 0) => {
             const urlQuery = querystring.stringify({ q: query, page })
             return `/search?${urlQuery}`
-        }
-    }
+        },
+    },
 }

@@ -23,26 +23,17 @@ export default class NotifyCommand extends Command<NotifyService> {
         const topicProviderName = rawArguments.shift()!
         const topicProvider = takashi.topicProviders.findByAlias(topicProviderName)
 
-        if(!topicProvider) {
+        if (!topicProvider) {
             throw new Error(`The provider "${topicProviderName}" does not exists.`)
         }
-        
-        const topicName = rawArguments.join(' ')
-        const targetTopic = await this.service.findOrCreateTopic(
-            topicProvider,
-            topicName
-        )
 
-        const subscriptionResult = await this.service.subscribe(
-            message.author.id,
-            targetTopic
-        )
+        const topicName = rawArguments.join(' ')
+        const targetTopic = await this.service.findOrCreateTopic(topicProvider, topicName)
+
+        const subscriptionResult = await this.service.subscribe(message.author.id, targetTopic)
 
         if (subscriptionResult === NotifySubscriptionResult.SUBSCRIBED) {
-            const subscribedMessage = context.translate(
-                'command.notify.subscribed',
-                targetTopic.name
-            )
+            const subscribedMessage = context.translate('command.notify.subscribed', targetTopic.name)
 
             const unsubscribeGuide = context.translate(
                 'command.notify.unsubscribe_guide',
@@ -51,19 +42,13 @@ export default class NotifyCommand extends Command<NotifyService> {
             )
 
             const embed = new MessageEmbed({
-                title: context.translate(
-                    'command.notify.subscribed_title',
-                    targetTopic.id
-                ),
+                title: context.translate('command.notify.subscribed_title', targetTopic.id),
                 description: `${subscribedMessage}\n${unsubscribeGuide}`,
                 color: [93, 120, 228],
                 timestamp: targetTopic.airsAt,
                 footer: {
-                    text: context.translate(
-                        'command.notify.source_provider',
-                        targetTopic.provider
-                    )
-                }
+                    text: context.translate('command.notify.source_provider', targetTopic.provider),
+                },
             })
 
             if (targetTopic.properties.thumbnail) {

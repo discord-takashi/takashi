@@ -1,15 +1,14 @@
-import Topic, { TopicDocument } from "../../models/topic";
-import User from "../../models/user";
+import Topic, { TopicDocument } from '../../models/topic'
+import User from '../../models/user'
 
 /**
  * The service for the `unsubscribe` command.
  */
 export default class UnsubscribeService {
-
     /**
      * Finds a topic by the ID.
      */
-    public async getTopicById(id: string, provider: string): Promise<TopicDocument| null> {
+    public async getTopicById(id: string, provider: string): Promise<TopicDocument | null> {
         return Topic.findOne({ id, provider })
     }
 
@@ -28,5 +27,4 @@ export default class UnsubscribeService {
 
         return true
     }
-
 }

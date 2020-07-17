@@ -25,19 +25,14 @@ export default class ListCommand extends Command<ListService> {
         const topics = await this.service.fetchUserTopics(user!._id)
         const userAvatar = message.author.avatarURL()
 
-        const subscriptionCount = context.translate(
-            'command.list.subscriptions_count',
-            topics.length
-        )
+        const subscriptionCount = context.translate('command.list.subscriptions_count', topics.length)
 
-        const unsubscribeGuide = context.translate(
-            'command.list.unsubscribe_guide'
-        )
+        const unsubscribeGuide = context.translate('command.list.unsubscribe_guide')
 
         const response = new MessageEmbed({
             title: context.translate('command.list.title'),
             color: [93, 120, 228], // rgba(93, 120, 228)
-            description: `${subscriptionCount}\n${unsubscribeGuide}`
+            description: `${subscriptionCount}\n${unsubscribeGuide}`,
         })
 
         if (userAvatar) {

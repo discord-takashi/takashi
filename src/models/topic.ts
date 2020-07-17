@@ -43,7 +43,7 @@ const TopicSchema = new Schema({
     id: String,
     name: {
         type: String,
-        index: { type: 'text' } // adds a "searchable" trait to this property
+        index: { type: 'text' }, // adds a "searchable" trait to this property
     },
     description: String,
     provider: String,
@@ -52,9 +52,9 @@ const TopicSchema = new Schema({
     subscribers: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'User'
-        }
-    ]
+            ref: 'User',
+        },
+    ],
 })
 
 export default mongoose.model<TopicDocument>('Topic', TopicSchema)

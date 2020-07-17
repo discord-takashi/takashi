@@ -20,9 +20,7 @@ export class LanguageRepository {
      * Gets a language by the code.
      */
     public get(code: string) {
-        return this.languages.find(
-            (language: Language) => language.code === code
-        )
+        return this.languages.find((language: Language) => language.code === code)
     }
 
     /**

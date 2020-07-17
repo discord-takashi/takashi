@@ -7,7 +7,6 @@ import User from '../../models/user'
  * The service for the `list` command.
  */
 export default class ListService extends CommandService {
-
     /**
      * Fetchs a user from the database based on your ID.
      */
@@ -26,5 +25,4 @@ export default class ListService extends CommandService {
 
         return userTopics
     }
-
 }

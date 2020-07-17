@@ -22,8 +22,8 @@ const UserSchema = new Schema({
     last_notification_received: Date,
     language: {
         type: String,
-        default: 'en_US'
-    }
+        default: 'en_US',
+    },
 })
 
 export default mongoose.model<UserDocument>('User', UserSchema)

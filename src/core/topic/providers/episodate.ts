@@ -19,9 +19,10 @@ export class EpisodateTopicProvider extends TopicProvider {
      * Fetchs a resource from the `episodate` API.
      */
     public async request(route: string) {
-        return axios.get(Constants.ENDPOINT + route)
-            .then(response => response.data)
-            .catch(error => this.throwRequestError(error))
+        return axios
+            .get(Constants.ENDPOINT + route)
+            .then((response) => response.data)
+            .catch((error) => this.throwRequestError(error))
     }
 
     /**
@@ -37,22 +38,22 @@ export class EpisodateTopicProvider extends TopicProvider {
      */
     public async fetchTopic(search: string) {
         const searchResponse = await this.request(Constants.ROUTES.search(search))
-        const searchFirstQuery = searchResponse.tv_shows.find((result: any) => 
-            result.name.toLowerCase().startsWith(search.toLowerCase()) && // episodate has a bad search engine 
-            result.status === 'Running'
+        const searchFirstQuery = searchResponse.tv_shows.find(
+            (result: any) =>
+                result.name.toLowerCase().startsWith(search.toLowerCase()) && result.status === 'Running' // episodate has a bad search engine
         )
 
         if (!searchFirstQuery) {
             throw new Error(`This title cannot be found inside ${this.name}.`)
         }
 
-        const detailsResponse = await this.request(
-            Constants.ROUTES.show_details(searchFirstQuery.id)
-        ).then((data: any) => data.tvShow)
+        const detailsResponse = await this.request(Constants.ROUTES.show_details(searchFirstQuery.id)).then(
+            (data: any) => data.tvShow
+        )
 
         const { id, name, countdown, status, image_thumbnail_path } = detailsResponse
 
-        if(status !== 'Running' && !countdown) {
+        if (status !== 'Running' && !countdown) {
             throw new Error(`This provided title is not realeasing episodes.`)
         }
 
@@ -67,8 +68,8 @@ export class EpisodateTopicProvider extends TopicProvider {
             airsAt: airDate.getTime(),
             properties: {
                 thumbnail: image_thumbnail_path,
-                color: 'rgb(93, 120, 228)'
-            }
+                color: 'rgb(93, 120, 228)',
+            },
         }
     }
 }

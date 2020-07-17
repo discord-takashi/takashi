@@ -21,13 +21,13 @@ export class AnilistTopicProvider extends TopicProvider {
     public async request(query: string, variables: any) {
         const requestBody = JSON.stringify({ query, variables })
         const headers = {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
         }
 
         return axios
             .post(Constants.ENDPOINT, requestBody, { headers })
-            .then(response => response.data) // response.data is axios internal to get the response body.
-            .then(response => response.data.Media) // response.data.Media is from GraphQL response
+            .then((response) => response.data) // response.data is axios internal to get the response body.
+            .then((response) => response.data.Media) // response.data.Media is from GraphQL response
     }
 
     /**
@@ -35,10 +35,7 @@ export class AnilistTopicProvider extends TopicProvider {
      */
     public async fetchTopic(search: string) {
         const variables = { search }
-        const response = await this.request(
-            Constants.MEDIA_QUERY,
-            variables
-        ).catch((error) => error)
+        const response = await this.request(Constants.MEDIA_QUERY, variables).catch((error) => error)
 
         if ((response as AxiosError).isAxiosError) {
             throw new Error(`This title cannot be found inside ${this.name}.`)
@@ -57,8 +54,8 @@ export class AnilistTopicProvider extends TopicProvider {
             airsAt: nextEpisodeToBeAired.airingAt * 1000,
             properties: {
                 thumbnail: response.coverImage.large,
-                color: response.coverImage.color
-            }
+                color: response.coverImage.color,
+            },
         }
     }
 }

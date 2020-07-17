@@ -22,38 +22,25 @@ export default class UnsubscribeCommand extends Command<UnsubscribeService> {
         const providerName = rawArguments.shift()!
         const provider = takashi.topicProviders.findByAlias(providerName)
 
-        if(!provider) {
+        if (!provider) {
             throw new Error(`The provider "${providerName}" does not exists.`)
         }
 
         const topicName = rawArguments.join(' ')
-        const targetTopic = await this.service.getTopicById(
-            topicName,
-            provider.name 
-        )
+        const targetTopic = await this.service.getTopicById(topicName, provider.name)
 
         if (targetTopic) {
-            const unsubscribed = await this.service.removeSubscriptionFromTopic(
-                message.author.id,
-                targetTopic
-            )
+            const unsubscribed = await this.service.removeSubscriptionFromTopic(message.author.id, targetTopic)
 
-            let response = context.translate(
-                'command.unsubscribed.not_subscribed'
-            )
+            let response = context.translate('command.unsubscribed.not_subscribed')
 
             if (unsubscribed) {
-                response = context.translate(
-                    'command.unsubscribed.unsubscribed',
-                    targetTopic.name
-                )
+                response = context.translate('command.unsubscribed.unsubscribed', targetTopic.name)
             }
 
             return message.channel.send(response)
         } else {
-            return message.channel.send(
-                context.translate('command.unsubscribe.not_found')
-            )
+            return message.channel.send(context.translate('command.unsubscribe.not_found'))
         }
     }
 }

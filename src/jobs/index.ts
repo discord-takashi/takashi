@@ -26,7 +26,7 @@ export default function loadJobs(takashi: Takashi, agenda: Agenda) {
     function notify(topic: TopicDocument, subscriber: UserDocument) {
         return agenda.now(SEND_NOTIFICATION, {
             to: subscriber.id,
-            topic
+            topic,
         } as NotificationParamethers)
     }
 
@@ -36,15 +36,13 @@ export default function loadJobs(takashi: Takashi, agenda: Agenda) {
     agenda.define(AIRING_CHECK, async () => {
         const now = Date.now()
         const topicQuery = { airsAt: { $lt: now } }
-        const topic = await Topic.findOne(topicQuery)
-            .populate('subscribers')
-            .exec()
+        const topic = await Topic.findOne(topicQuery).populate('subscribers').exec()
 
         if (topic) {
             await topic.subscribers.map(async (subscriber: UserDocument) => {
                 await notify(topic, subscriber)
                 return subscriber.updateOne({
-                    last_notification_received: new Date()
+                    last_notification_received: new Date(),
                 })
             })
 
@@ -71,7 +69,7 @@ export default function loadJobs(takashi: Takashi, agenda: Agenda) {
     /**
      * Sends a notification to a user.
      */
-    agenda.define(SEND_NOTIFICATION, async job => {
+    agenda.define(SEND_NOTIFICATION, async (job) => {
         const { to, topic } = job.attrs.data as NotificationParamethers
         const user = takashi.client.users.resolve(to)
 

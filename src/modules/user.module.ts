@@ -8,7 +8,7 @@ import user from '../models/user'
 export default function users(takashi: Takashi) {
     takashi.client.on('guildMemberAdd', async (member: PartialGuildMember | GuildMember) => {
         if (member.user) {
-            await user.create({ id: member.user.id })
+            await user.create({ id: member.user.id } as any) // language and last_notification_received has default values
         }
     })
 

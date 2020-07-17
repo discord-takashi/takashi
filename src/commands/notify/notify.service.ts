@@ -11,7 +11,7 @@ import { TopicProvider } from '../../core/topic/topic-provider'
 export enum NotifySubscriptionResult {
     SUBSCRIBED,
     ALREADY_SUBSCRIBED,
-    UNKNOWN
+    UNKNOWN,
 }
 
 /**
@@ -21,10 +21,7 @@ export default class NotifyService extends CommandService {
     /**
      * Subscribe to a topic.
      */
-    public async subscribe(
-        userId: string,
-        topic: TopicDocument
-    ): Promise<NotifySubscriptionResult> {
+    public async subscribe(userId: string, topic: TopicDocument): Promise<NotifySubscriptionResult> {
         const user = await User.findOne({ id: userId })
 
         if (user) {
@@ -43,13 +40,10 @@ export default class NotifyService extends CommandService {
     /**
      * Find or create a new topic.
      */
-    public async findOrCreateTopic(
-        topicProvider: TopicProvider,
-        topicName: string
-    ): Promise<TopicDocument> {
+    public async findOrCreateTopic(topicProvider: TopicProvider, topicName: string): Promise<TopicDocument> {
         const topicData = await topicProvider.fetchTopic(topicName)
         let topic: TopicDocument | null = await Topic.findOne({
-            id: topicData.id
+            id: topicData.id,
         })
 
         if (!topic) {
@@ -61,9 +55,9 @@ export default class NotifyService extends CommandService {
                 airsAt: topicData.airsAt,
                 properties: {
                     thumbnail: topicData.properties.thumbnail,
-                    color: topicData.properties.color
-                }
-            })
+                    color: topicData.properties.color,
+                },
+            } as any)
         }
 
         return topic

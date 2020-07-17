@@ -16,28 +16,21 @@ export class TopicProviderRepository {
      * Initializes the topic provider repository.
      */
     public constructor() {
-        this.topicProviders = [
-            new AnilistTopicProvider(),
-            new EpisodateTopicProvider()
-        ]
+        this.topicProviders = [new AnilistTopicProvider(), new EpisodateTopicProvider()]
     }
 
     /**
      * Finds a provider by the name.
      */
     public find(name: string) {
-        return this.topicProviders.find(
-            (provider: TopicProvider) => provider.name === name
-        )
+        return this.topicProviders.find((provider: TopicProvider) => provider.name === name)
     }
 
     /**
      * Finds a topic by the alias.
      */
     public findByAlias(alias: string) {
-        return this.topicProviders.find(
-            (provider: TopicProvider) => provider.alias === alias
-        )
+        return this.topicProviders.find((provider: TopicProvider) => provider.alias === alias)
     }
 
     /**

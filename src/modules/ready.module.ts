@@ -12,7 +12,7 @@ export default function ready(takashi: Takashi) {
             url: 'https://twitch.tv/discord_takashi',
             name: `${await Topic.countDocuments()} notification sources for ${
                 takashi.client.users.cache.size - 1 // not streaming for himself
-            } users`
+            } users`,
         })
     }
 

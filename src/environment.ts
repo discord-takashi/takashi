@@ -6,8 +6,7 @@ export const DISCORD_TOKEN = process.env.DISCORD_TOKEN
 /**
  * The connection URL of the MongoDB server.
  */
-export const DATABASE_URL =
-    process.env.DATABASE_URL || 'mongodb://localhost/takashi_development'
+export const DATABASE_URL = process.env.DATABASE_URL || 'mongodb://localhost/takashi_development'
 
 /**
  * The time for executing the airing check.

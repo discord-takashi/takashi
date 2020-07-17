@@ -37,12 +37,7 @@ export class TakashiContext {
     /**
      * Initializes a new message context.
      */
-    public constructor(
-        takashi: Takashi,
-        message: Message,
-        rawArguments: string[],
-        user: UserDocument
-    ) {
+    public constructor(takashi: Takashi, message: Message, rawArguments: string[], user: UserDocument) {
         this.takashi = takashi
         this.message = message
         this.rawArguments = rawArguments
